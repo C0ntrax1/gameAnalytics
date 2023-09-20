@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 shadow-2xl mb-10">
+    <nav className="h-[4rem] w-full bg-black border-gray-200 dark:bg-gray-900 dark:border-gray-700 shadow-2xl">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to="/" className="flex items-center">
-          <span className="self-center md:text-lg text-base font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center md:text-lg text-base font-semibold whitespace-nowrap text-white">
             Point Analytics
           </span>
         </Link>
@@ -38,11 +38,11 @@ export default function Navbar(props) {
           className="hidden w-full md:block md:w-auto"
           id="navbar-multi-level"
         >
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-black dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <Link
                 to="/"
-                className="block py-2 pl-3 pr-4 text-white bg-blue-700 hover:text-blue-500 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
+                className="block py-2 pl-3 pr-4 text-white bg-white rounded md:bg-transparent md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
               >
                 Heatmap
               </Link>
@@ -51,7 +51,7 @@ export default function Navbar(props) {
               <li>
                 <Link
                   to="/profile"
-                  className="block py-2 pl-3 pr-4 text-white bg-blue-700 hover:text-blue-500 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
+                  className="block py-2 pl-3 pr-4 text-white bg-white rounded md:bg-transparent md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
                 >
                   Profile
                 </Link>

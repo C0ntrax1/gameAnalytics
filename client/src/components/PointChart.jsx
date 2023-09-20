@@ -19,8 +19,8 @@ export default function PointChart(props) {
   const fetchPoints = async () => {
     await axios
       .get(CONSTANT.server + `points/${props?.user_id}`)
-      .then((responce) => {
-        setPayload(responce.data);
+      .then((response) => {
+        setPayload(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -42,18 +42,61 @@ export default function PointChart(props) {
 
   useEffect(() => {
     if (payload.length > 0) {
+      let maxs = [
+        Math.max(...payload.map((point) => point.y)),
+        Math.min(...payload.map((point) => point.y)) < 0
+          ? -Math.min(...payload.map((point) => point.y))
+          : Math.min(...payload.map((point) => point.y)),
+        Math.max(...payload.map((point) => point.x)),
+        Math.min(...payload.map((point) => point.x)) < 0
+          ? -Math.min(...payload.map((point) => point.x))
+          : Math.min(...payload.map((point) => point.x)),
+      ];
+      let maximum = Math.max(...maxs.map((point) => point));
+      const customPointCanvas = function (context, options) {
+        let cvs = document.createElement("canvas");
+        let ctx = cvs.getContext("2d");
+        let radius = options.pointRadius || 5;
+
+        cvs.height = 2 * radius;
+        cvs.width = 2 * radius;
+
+        // Draw a black circle
+        ctx.beginPath();
+        ctx.arc(radius, radius, radius, 0, Math.PI * 2);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.closePath();
+
+        // Add the point's label inside the circle
+        ctx.font = "15px Arial";
+        ctx.fillStyle = "#fcc401"; // Text color
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(context?.raw?.label, radius, radius);
+
+        return cvs;
+      };
       setConfig({
         options: {
           scales: {
             y: {
               beginAtZero: true,
-              max: Math.max(...payload.map((point) => point.y)) + 0.2,
-              min: Math.min(...payload.map((point) => point.y)) - 0.2,
+              max: maximum + 0.5,
+              min: -maximum - 0.5,
+              display: false, // Remove Y-axis labels
+              grid: {
+                display: false, // Remove Y-axis grid
+              },
             },
             x: {
               beginAtZero: true,
-              max: Math.max(...payload.map((point) => point.x)) + 0.2,
-              min: Math.min(...payload.map((point) => point.x)) - 0.2,
+              max: maximum + 0.5,
+              min: -maximum - 0.5,
+              display: false, // Remove X-axis labels
+              grid: {
+                display: false, // Remove X-axis grid
+              },
             },
           },
           responsive: true,
@@ -81,15 +124,7 @@ export default function PointChart(props) {
               display: false, // Hide the legend
             },
             tooltip: {
-              callbacks: {
-                label: function (context) {
-                  const label =
-                    context.dataset.data[context.dataIndex].label || "";
-                  return `${label} (${
-                    context.dataset.data[context.dataIndex].x
-                  }, ${context.dataset.data[context.dataIndex].y})`;
-                },
-              },
+              enabled: false, // Disable the tooltip
             },
           },
         },
@@ -97,8 +132,15 @@ export default function PointChart(props) {
           datasets: [
             {
               label: "Point",
-              data: payload,
-              backgroundColor: "red",
+              data: payload.map((point) => ({
+                x: point.x,
+                y: point.y,
+                label: point?.label,
+              })),
+              // Use 'custom' as the point style to display HTML content
+              pointStyle: customPointCanvas,
+              pointRadius: 10, // Adjust the point radius as needed
+              pointBackgroundColor: "transparent", // Make the point background transparent
             },
           ],
         },
@@ -107,9 +149,14 @@ export default function PointChart(props) {
   }, [payload]);
 
   return (
-    <div className="h-[inherit] w-full flex items-center justify-center">
+    <div className="h-[calc(100vh-15rem)] w-full flex items-center justify-center">
       {payload && config.data && config.options && (
-        <Scatter options={config.options} data={config.data} />
+        <Scatter
+          options={config.options}
+          data={config.data}
+          height={"700"}
+          width={"700"}
+        />
       )}
     </div>
   );

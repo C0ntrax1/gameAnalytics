@@ -58,7 +58,7 @@ export default function Layout(props) {
           setSession={setSession}
           logout={logout}
         />
-        <div className="md:mx-10 mx-2">{props.children}</div>
+        <div className="">{props.children}</div>
       </UserData.Provider>
     </>
   );

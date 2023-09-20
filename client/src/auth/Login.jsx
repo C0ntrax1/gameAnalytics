@@ -8,6 +8,21 @@ import {
   checkLoginFromLogin,
 } from "../CONSTANT";
 
+const RenderInput = (props) => {
+  return (
+    <input
+      className="py-10 pl-7 px-4 max-w-[7rem] w-full bg-transparent border-2 border-black rounded-lg text-8xl"
+      value={props?.value}
+      onChange={props?.onChange}
+      id={props?.id}
+      name={props?.name}
+      type="number"
+      max={9}
+      min={0}
+    />
+  );
+};
+
 const Login = () => {
   const navigate = useNavigate();
   useEffect(() => {
@@ -15,92 +30,96 @@ const Login = () => {
       navigate("/");
     }
   }, []);
-  const login = async (e) => {
-    e.target.style.pointerEvents = "none";
-    e.target.innerHTML =
-      '<div className="spinner-border custom-spin" role="status"><span className="visually-hidden">Loading...</span></div>';
-    e.preventDefault();
-    resetMessage();
-    if (payload.userid !== "") {
-      await axios
-        .post(CONSTANT.server + "login", payload)
-        .then((responce) => {
-          if (responce.status === 200) {
-            let res = responce.data;
-            if (res.message) {
-              setMessage(res.message, "red-500");
-            } else {
-              sessionStorage.setItem(
-                "loggedin",
-                JSON.stringify({
-                  data: res,
-                })
-              );
-              navigate("/");
-            }
+  const login = async () => {
+    await axios
+      .post(CONSTANT.server + "login", {
+        userid: `${payload?.a}${payload?.b}${payload?.c}`,
+      })
+      .then((responce) => {
+        if (responce.status === 200) {
+          let res = responce.data;
+          if (res.message) {
+            setMessage(res.message, "red-500");
+          } else {
+            sessionStorage.setItem(
+              "loggedin",
+              JSON.stringify({
+                data: res,
+              })
+            );
+            navigate("/profile");
           }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      setMessage("Please enter user id.", "red-500");
-    }
-    e.target.style.pointerEvents = "unset";
-    e.target.innerHTML = "Log In";
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const init__payload = {
-    userid: "",
+    a: "",
+    b: "",
+    c: "",
   };
   const [payload, setPayload] = useState(init__payload);
   const changePayload = (e) => {
     setPayload({
       ...payload,
-      [e.target.name]: e.target.value,
+      [e.target.name]: parseInt(e.target.value[e.target.value?.length - 1]),
     });
   };
+
+  useEffect(() => {
+    if (payload.a !== 0 && payload.b !== 0 && payload.c !== 0) {
+      login();
+    }
+  }, [payload]);
   return (
-    <section className="bg-gray-50 dark:bg-gray-900">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <Link to="/">
-              <h1 className="text-lg text-center mb-10 font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Point Analytics
-              </h1>
-            </Link>
-            <div className="space-y-4 md:space-y-6">
-              <div>
-                <label
-                  htmlFor="userid"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  User ID
-                </label>
-                <input
-                  type="number"
-                  name="userid"
-                  value={payload.userid}
-                  onChange={changePayload}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder=""
-                  required
-                />
-              </div>
-              <button
-                onClick={login}
-                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Log In
-              </button>
-              <div
-                className="my-10"
-                id="error"
-                style={{ display: "none" }}
-              ></div>
-            </div>
+    <section className="bg-accent-1 w-full min-h-screen md:p-20 p-2">
+      <div className="w-full md:text-9xl text-5xl font-bold mb-[5rem]">
+        Auswertung
+      </div>
+      <div className="flex flex-row h-[calc(100vh-25rem)]">
+        <div className="w-1/2 flex flex-col items-start justify-between">
+          <div className="w-2/3 text-2xl">
+            Sind wir heute ähnlichen Idealen und Utopien ausgesetzt wie Pater
+            Martin Schmid? Wie hast du dich bei den sechs Stationen entschieden?
+            Das Modell zeigt vier verschiedene Typen, wie wir Menschen das Leben
+            wahrnehmen. Wir haben deine Antworten auf die vier Typen zugeordnet.
+            Gehörst du zu den Realisten, den Hedonisten, den Idealisten oder den
+            Opportunisten?
           </div>
+          <div className="text-2xl">
+            Spieler ID eingeben
+            <br />
+            drücke ENTER für Auswertung
+          </div>
+        </div>
+        <div className="w-1/2 flex flex-row space-x-4 items-end justify-end">
+          <RenderInput
+            name="a"
+            id="userid_a"
+            value={payload.a}
+            onChange={(e) => {
+              changePayload(e);
+              document.getElementById("userid_b").focus();
+            }}
+          />
+          <RenderInput
+            name="b"
+            id="userid_b"
+            value={payload.b}
+            onChange={(e) => {
+              changePayload(e);
+              document.getElementById("userid_c").focus();
+            }}
+          />
+          <RenderInput
+            name="c"
+            id="userid_c"
+            value={payload.c}
+            onChange={changePayload}
+          />
         </div>
       </div>
     </section>

@@ -1,11 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* @import url("https://fonts.googleapis.com/css2?family=Odibee+Sans&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap'); */
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 #root {
-    /* font-family: "Odibee Sans", sans-serif !important; */
-    font-family: "Press Start 2P", sans-serif !important;
-  }
+  /* font-family: "Odibee Sans", sans-serif !important; */
+  font-family: "Hanken Grotesk", sans-serif !important;
+}

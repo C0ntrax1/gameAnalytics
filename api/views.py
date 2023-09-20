@@ -102,7 +102,7 @@ def evaluateLvlAverage(results=[]):
     for lvl, data in averages.items():
         average_x = data["total_x"] / data["count"] if data["count"] > 0 else None
         average_y = data["total_y"] / data["count"] if data["count"] > 0 else None
-        final_averages.append({"label": f"Lvl {lvl}", "x": average_x, "y": average_y})
+        final_averages.append({"label": f"{lvl}", "x": average_x, "y": average_y})
 
     return final_averages
 
