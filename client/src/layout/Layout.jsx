@@ -26,8 +26,6 @@ export default function Layout(props) {
       });
     }
   }, []);
-
-  const value = { session, setSession };
   // ------------------
   // SESSION - END
   // ------------------
@@ -37,7 +35,7 @@ export default function Layout(props) {
   //   }
   // }, [session]);
 
-  const logout = async () => {
+  const logout = async (to = "/") => {
     sessionStorage.removeItem("access_token");
     sessionStorage.removeItem("refresh_token");
     sessionStorage.removeItem("loggedin");
@@ -46,8 +44,10 @@ export default function Layout(props) {
       personal: __init_session.personal,
       isLoggedIn: false,
     });
-    navigate("/");
+    navigate(to);
   };
+
+  const value = { session, setSession, logout };
 
   return (
     <>

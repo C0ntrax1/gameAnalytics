@@ -3,6 +3,12 @@ from . import models
 import ast
 
 
+class ConfigSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Config
+        fields = "__all__"
+
+
 class ListCharField(serializers.ListField):
     child = serializers.CharField()
 

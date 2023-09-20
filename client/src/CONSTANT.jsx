@@ -8,7 +8,7 @@ import axios from "axios";
 
 export const CONSTANT = {
   server: "http://rehansathio.pythonanywhere.com/api/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
-  admin: "http://rehansathio.pythonanywhere.com/admin", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
+  admin: "http://rehansathio.pythonanywhere.com/admin/", // CHANGE WITH YOUR BACKEND LINK (/ is MUST IN END)
   client: "http://rehansathio.pythonanywhere.com/", // CHANGE WITH YOUR FRONTEND LINK (/ is MUST IN END)
 };
 

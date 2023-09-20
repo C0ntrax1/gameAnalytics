@@ -10,6 +10,32 @@ from . import serializers
 from rest_framework import status
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import get_user_model
+
+
+def initialize_backend():
+    try:
+        User = get_user_model()
+        # Check if admin exists
+        admin_exists = User.objects.filter(username="admin").exists()
+        if not admin_exists:
+            # Add admin user
+            admin_user = User.objects.create_user(
+                username="admin",
+                password="admin",
+                email="admin@admin.com",
+                is_staff=True,
+                is_superuser=True,
+            )
+            print("[INITIALIZATION][SUCCESS]: Admin user added")
+        else:
+            print("[INITIALIZATION][EXISTS]: Admin user already exists")
+    except Exception as e:
+        print("[INITIALIZATION][ERROR]:", str(e))
+
+
+# Call the function to initialize the backend
+initialize_backend()
 
 
 @api_view(["POST"])
@@ -29,6 +55,16 @@ def login(request):
     else:
         response_data = {"message": "User ID not registered."}
         return JsonResponse(response_data, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([])
+@authentication_classes([])
+def config(request):
+    if request.method == "GET":
+        query = models.Config.objects.all()
+        SerializedData = serializers.ConfigSerializer(query, many=True)
+        return JsonResponse(SerializedData.data, status=status.HTTP_200_OK, safe=False)
 
 
 @api_view(["POST"])

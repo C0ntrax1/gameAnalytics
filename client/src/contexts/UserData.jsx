@@ -8,6 +8,7 @@ const UserData = React.createContext({
     isLoggedIn: false,
   },
   setSession: () => {},
+  logout: () => {},
 });
 
 export default UserData;

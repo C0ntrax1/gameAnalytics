@@ -28,7 +28,6 @@ function App() {
             }
           />
           <Route path="/admin" element={<TakeMeToAdmin />} />
-          <Route path="/admin/" element={<TakeMeToAdmin />} />
           <Route path="/login" element={<Login />} />
         </Routes>
       </Router>

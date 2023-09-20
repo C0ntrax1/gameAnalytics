@@ -30,6 +30,38 @@ export default function Heatmap(props) {
   useEffect(() => {
     fetchPoints();
   }, []);
+
+  const [rate, setRate] = useState(null);
+
+  const fetchConfig = async () => {
+    await axios
+      .get(CONSTANT.server + `config`)
+      .then((response) => {
+        if (response.data) {
+          setRate(response.data?.refresh_rate || 15);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    fetchConfig();
+  }, []);
+
+  useEffect(() => {
+    if (rate) {
+      const intervalId = setInterval(() => {
+        fetchPoints();
+      }, rate * 60 * 1000);
+
+      return () => {
+        clearInterval(intervalId);
+      };
+    }
+  }, [rate]);
+
   const [payload, setPayload] = useState([]);
 
   const [config, setConfig] = useState({
