@@ -57,9 +57,9 @@ const Login = () => {
   };
 
   const init__payload = {
-    a: "",
-    b: "",
-    c: "",
+    a: null,
+    b: null,
+    c: null,
   };
   const [payload, setPayload] = useState(init__payload);
   const changePayload = (e) => {
@@ -69,11 +69,11 @@ const Login = () => {
     });
   };
 
-  // useEffect(() => {
-  //   if (payload.a !== 0 && payload.b !== 0 && payload.c !== 0) {
-  //     login();
-  //   }
-  // }, [payload]);
+  useEffect(() => {
+    if (payload.a && payload.b && payload.c) {
+      login();
+    }
+  }, [payload]);
   return (
     <section className="bg-accent-1 w-full min-h-screen md:p-20 p-2">
       <div className="w-full md:text-9xl text-5xl font-bold mb-[5rem]">
