@@ -102,7 +102,7 @@ um eine bessere Zukunft zu erreichen.`}),O(no,{p1:"Die Realisten",p2:"Das Leben 
             Emotionen walten lassen, wenn man\r
             stattdessen auf die eigene Lebenserfahrung sowie die Weisheiten von\r
             andern zurückgreifen kann? Das\r
-            menschliche Hirn brilliert beim systematischen Lösen von Problemen`})]}),O("div",{className:"flex flex-col items-center justify-center w-[30rem] h-[calc(100vh-15rem)]",children:ue("div",{className:"relative z-0",children:[O(X2,{}),O("img",{src:"/template/chart.svg",className:"invert-[100] absolute top-0 h-full w-full -z-10"})]})}),ue("div",{className:"flex flex-col justify-between w-[20rem] h-[calc(100vh-15rem)]",children:[O(no,{p1:"Die Hedonisten",p2:"Das Leben ist eine Feier!",p3:`Es ist kurz und wir verdienen es,\r
+            menschliche Hirn brilliert beim systematischen Lösen von Problemen`})]}),O("div",{className:"flex flex-col items-center justify-center w-[30rem] h-[calc(100vh-15rem)]",children:ue("div",{className:"relative z-0",children:[O(X2,{}),O("img",{src:"/assets/chart.svg",className:"invert-[100] absolute top-0 h-full w-full -z-10"})]})}),ue("div",{className:"flex flex-col justify-between w-[20rem] h-[calc(100vh-15rem)]",children:[O(no,{p1:"Die Hedonisten",p2:"Das Leben ist eine Feier!",p3:`Es ist kurz und wir verdienen es,\r
             es zu geniessen. Erlebe ein Abenteuer,\r
             verwirkliche dich in der Kunst, gönn\r
             dir dein Lieblingsessen. Es gibt unendlich viel Schönes zu entdecken,\r
@@ -130,7 +130,7 @@ um eine bessere Zukunft zu erreichen.`}),O(io,{p1:"Die Realisten",p2:"Das Leben 
             Emotionen walten lassen, wenn man\r
             stattdessen auf die eigene Lebenserfahrung sowie die Weisheiten von\r
             andern zurückgreifen kann? Das\r
-            menschliche Hirn brilliert beim systematischen Lösen von Problemen`})]}),ue("div",{className:"flex flex-col items-center justify-center w-[30rem] h-[calc(100vh-15rem)]",children:[ue("div",{className:"relative z-0",children:[O(G2,{user_id:(n=e==null?void 0:e.personal)==null?void 0:n.userid}),O("img",{src:"/template/chart.svg",className:"absolute top-0 h-full w-full -z-10"})]}),O("div",{className:"mt-10",children:"drücke ENTER für schliessen"})]}),ue("div",{className:"flex flex-col justify-between w-[20rem] h-[calc(100vh-15rem)]",children:[O(io,{p1:"Die Hedonisten",p2:"Das Leben ist eine Feier!",p3:`Es ist kurz und wir verdienen es,\r
+            menschliche Hirn brilliert beim systematischen Lösen von Problemen`})]}),ue("div",{className:"flex flex-col items-center justify-center w-[30rem] h-[calc(100vh-15rem)]",children:[ue("div",{className:"relative z-0",children:[O(G2,{user_id:(n=e==null?void 0:e.personal)==null?void 0:n.userid}),O("img",{src:"/assets/chart.svg",className:"absolute top-0 h-full w-full -z-10"})]}),O("div",{className:"mt-10",children:"drücke ENTER für schliessen"})]}),ue("div",{className:"flex flex-col justify-between w-[20rem] h-[calc(100vh-15rem)]",children:[O(io,{p1:"Die Hedonisten",p2:"Das Leben ist eine Feier!",p3:`Es ist kurz und wir verdienen es,\r
             es zu geniessen. Erlebe ein Abenteuer,\r
             verwirkliche dich in der Kunst, gönn\r
             dir dein Lieblingsessen. Es gibt unendlich viel Schönes zu entdecken,\r

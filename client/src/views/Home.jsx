@@ -45,7 +45,7 @@ um eine bessere Zukunft zu erreichen."
           <div className="relative z-0">
             <Heatmap />
             <img
-              src="/template/chart.svg"
+              src="/assets/chart.svg"
               className="invert-[100] absolute top-0 h-full w-full -z-10"
             />
           </div>

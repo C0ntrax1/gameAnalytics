@@ -55,7 +55,7 @@ um eine bessere Zukunft zu erreichen."
         <div className="flex flex-col items-center justify-center w-[30rem] h-[calc(100vh-15rem)]">
           <div className="relative z-0">
             <PointChart user_id={session?.personal?.userid} />
-            <img src="/template/chart.svg" className="absolute top-0 h-full w-full -z-10"/>
+            <img src="/assets/chart.svg" className="absolute top-0 h-full w-full -z-10"/>
           </div>
           <div className="mt-10">drücke ENTER für schliessen</div>
         </div>
