@@ -70,7 +70,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (payload.a && payload.b && payload.c) {
+    if (payload.a !== null && payload.b !== null && payload.c !== null) {
       login();
     }
   }, [payload]);
@@ -120,7 +120,6 @@ const Login = () => {
             value={payload.c}
             onChange={(e) => {
               changePayload(e);
-              login();
             }}
           />
         </div>
