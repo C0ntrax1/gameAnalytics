@@ -87,8 +87,8 @@ def evaluateLvlAverage(results=[]):
             average_x = total_x / count
             average_y = total_y / count
         else:
-            average_x = None
-            average_y = None
+            average_x = 0
+            average_y = 0
 
         if lvl not in averages:
             averages[lvl] = {"count": 0, "total_x": 0, "total_y": 0}
