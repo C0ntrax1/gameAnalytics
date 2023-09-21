@@ -30,6 +30,14 @@ def initialize_backend():
             print("[INITIALIZATION][SUCCESS]: Admin user added")
         else:
             print("[INITIALIZATION][EXISTS]: Admin user already exists")
+
+        # Populate config
+        if models.Config.objects.count() == 0:
+            config = models.Config()
+            config.save()
+            print("[INITIALIZATION][SUCCESS]: Config setup done")
+        else:
+            print("[INITIALIZATION][EXISTS]: Config already exists")
     except Exception as e:
         print("[INITIALIZATION][ERROR]:", str(e))
 
