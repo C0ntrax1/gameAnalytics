@@ -74,6 +74,11 @@ const Login = () => {
       login();
     }
   }, [payload]);
+
+  useEffect(() => {
+    document.getElementById("userid_a").focus();
+  }, []);
+
   return (
     <section className="bg-accent-1 w-full min-h-screen md:p-20 p-2">
       <div className="w-full md:text-9xl text-5xl font-bold mb-[5rem]">
