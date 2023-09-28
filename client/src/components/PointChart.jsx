@@ -57,6 +57,9 @@ export default function PointChart(props) {
         let cvs = document.createElement("canvas");
         let ctx = cvs.getContext("2d");
         let radius = options.pointRadius || 5;
+        if (context?.raw?.isDouble) {
+          radius = 15;
+        }
 
         cvs.height = 2 * radius;
         cvs.width = 2 * radius;
@@ -136,6 +139,7 @@ export default function PointChart(props) {
                 x: point.x,
                 y: point.y,
                 label: point?.label,
+                isDouble: point?.isDouble,
               })),
               // Use 'custom' as the point style to display HTML content
               pointStyle: customPointCanvas,

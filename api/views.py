@@ -150,6 +150,23 @@ def evaluateLvlAverage(results=[]):
 
     return final_averages
 
+def combine_entries(data):
+    combined_data = {}
+    
+    for entry in data:
+        key = (entry["x"], entry["y"])
+        if key in combined_data:
+            combined_data[key]["label"].append(entry["label"])
+            combined_data[key]["isDouble"] = True
+        else:
+            combined_data[key] = {
+                "label": [entry["label"]],
+                "isDouble": False,
+                "x": entry["x"],
+                "y": entry["y"]
+            }
+    
+    return list(combined_data.values())
 
 @api_view(["GET"])
 @permission_classes([])
@@ -161,10 +178,8 @@ def points(request, pk=None):
 
     entries = models.Entry.objects.filter(userid=int(pk))
     results = serializers.ViewEntrySerializer(entries, many=True).data
-
-    return JsonResponse(
-        evaluateLvlAverage(results), status=status.HTTP_200_OK, safe=False
-    )
+    finalData = combine_entries(evaluateLvlAverage(results))
+    return JsonResponse(finalData, status=status.HTTP_200_OK, safe=False)
 
 
 @api_view(["GET"])
